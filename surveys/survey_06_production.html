@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSDM-RELOC-001 | Production Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--primary:#1B4F8A;--accent:#F2A900;--success:#27AE60;--danger:#E74C3C;--bg:#F5F7FA;--card:#FFFFFF;--text:#2C3E50;--muted:#7F8C8D;--border:#E0E6ED;--radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;}
+  .sticky-header{position:sticky;top:0;z-index:100;background:var(--primary);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.15);}
+  .header-inner{max-width:780px;margin:0 auto;padding:14px 20px 0;}
+  .header-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .dept-badge{background:var(--accent);color:#000;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px;text-transform:uppercase;}
+  .header-title{font-size:17px;font-weight:700;} .header-sub{font-size:13px;opacity:0.8;margin-left:auto;}
+  .progress-bar-wrap{background:rgba(255,255,255,0.2);height:4px;} .progress-bar{height:4px;background:var(--accent);transition:width 0.4s;width:0%;}
+  .container{max-width:780px;margin:0 auto;padding:28px 20px 60px;}
+  .card{background:var(--card);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);border:1px solid var(--border);}
+  .card-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--bg);}
+  .card-icon{font-size:22px;} .card-title{font-size:17px;font-weight:700;color:var(--primary);} .card-count{font-size:12px;color:var(--muted);margin-left:auto;}
+  .form-group{margin-bottom:20px;}
+  label{display:block;font-weight:600;font-size:14px;margin-bottom:8px;color:var(--text);} label .req{color:var(--danger);margin-left:3px;}
+  input[type=text],input[type=email],textarea,select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Sarabun',sans-serif;font-size:15px;color:var(--text);background:#fff;transition:border-color 0.2s;}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(27,79,138,0.1);}
+  textarea{min-height:90px;resize:vertical;}
+  .radio-group,.checkbox-group{display:flex;flex-direction:column;gap:10px;}
+  .radio-group label,.checkbox-group label{display:flex;align-items:center;gap:10px;font-weight:400;cursor:pointer;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;transition:all 0.2s;}
+  .radio-group label:hover,.checkbox-group label:hover{border-color:var(--primary);background:#f0f5ff;}
+  .radio-group input,.checkbox-group input{width:18px;height:18px;accent-color:var(--primary);flex-shrink:0;}
+  .radio-group label.selected,.checkbox-group label.selected{border-color:var(--primary);background:#f0f5ff;}
+  .btn-submit{width:100%;padding:16px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'Sarabun',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .btn-submit:hover:not(:disabled){background:#14407a;transform:translateY(-1px);box-shadow:0 4px 16px rgba(27,79,138,0.3);} .btn-submit:disabled{opacity:0.65;cursor:not-allowed;}
+  .success-card{display:none;background:var(--card);border-radius:var(--radius);padding:50px 30px;text-align:center;border:2px solid var(--success);}
+  .success-icon{font-size:56px;margin-bottom:16px;} .success-title{font-size:24px;font-weight:700;color:var(--success);margin-bottom:10px;} .success-msg{color:var(--muted);font-size:15px;}
+  .error-msg{background:#fef0f0;border:1.5px solid var(--danger);color:var(--danger);border-radius:8px;padding:12px 16px;margin-top:14px;display:none;font-size:14px;}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;}
+</style>
+</head>
+<body>
+<div class="sticky-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <span class="dept-badge">Production</span>
+      <span class="header-title">Production · 11 คน (Broadcast+Editor)</span>
+      <span class="header-sub">SSDM-RELOC-001</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+</div>
+<div class="container">
+  <form id="surveyForm" novalidate>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">👤</span><span class="card-title">ข้อมูลส่วนตัว</span><span class="card-count">ส่วนที่ 1/5</span></div>
+      <div class="form-group"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input type="text" name="name" placeholder="กรอกชื่อ-นามสกุล" required></div>
+      <div class="form-group"><label>ตำแหน่ง <span class="req">*</span></label><input type="text" name="position" placeholder="เช่น Video Editor, Broadcast Engineer, Motion Graphics" required></div>
+      <div class="form-group"><label>บริษัท <span class="req">*</span></label><select name="company" required><option value="">-- เลือกบริษัท --</option><option>SSDM Group</option><option>C&amp;N Media</option><option>Instinct Communicasia</option><option>MTUTD</option></select></div>
+      <div class="form-group"><label>อีเมล <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com" required></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🖥️</span><span class="card-title">ความต้องการ Workstation</span><span class="card-count">ส่วนที่ 2/5</span></div>
+      <div class="form-group"><label>ประเภท Workstation</label><div class="radio-group"><label><input type="radio" name="workstation_type" value="โต๊ะมาตรฐาน 120×60 cm"> โต๊ะมาตรฐาน 120×60 cm</label><label><input type="radio" name="workstation_type" value="โต๊ะใหญ่ 160×80 cm"> โต๊ะใหญ่ 160×80 cm</label><label><input type="radio" name="workstation_type" value="โต๊ะ L-Shape"> โต๊ะ L-Shape</label><label><input type="radio" name="workstation_type" value="Standing Desk"> Standing Desk</label><label><input type="radio" name="workstation_type" value="แบบอื่น"> แบบอื่น</label></div></div>
+      <div class="form-group"><label>จำนวน Monitor</label><div class="radio-group"><label><input type="radio" name="monitor_count" value="1 จอ"> 1 จอ</label><label><input type="radio" name="monitor_count" value="2 จอ"> 2 จอ</label><label><input type="radio" name="monitor_count" value="3 จอขึ้นไป"> 3 จอขึ้นไป</label></div></div>
+      <div class="form-group"><label>ขนาด Monitor</label><select name="monitor_size"><option value="">-- เลือกขนาด --</option><option>24"</option><option>27"</option><option>32"+</option><option>Ultrawide 34"+</option><option>ไม่มีความต้องการพิเศษ</option></select></div>
+      <div class="form-group"><label>ลิ้นชักเก็บเอกสาร</label><div class="radio-group"><label><input type="radio" name="storage_drawer" value="ไม่ต้องการ"> ไม่ต้องการ</label><label><input type="radio" name="storage_drawer" value="1 ลิ้นชัก"> 1 ลิ้นชัก</label><label><input type="radio" name="storage_drawer" value="2 ลิ้นชัก"> 2 ลิ้นชัก</label><label><input type="radio" name="storage_drawer" value="มากกว่า 2 ลิ้นชัก"> มากกว่า 2 ลิ้นชัก</label></div></div>
+      <div class="form-group"><label>ต้องการ Locker ส่วนตัว</label><div class="radio-group"><label><input type="radio" name="locker" value="ใช่"> ใช่</label><label><input type="radio" name="locker" value="ไม่ใช่"> ไม่ใช่</label></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">📅</span><span class="card-title">ความต้องการห้องประชุม</span><span class="card-count">ส่วนที่ 3/5</span></div>
+      <div class="form-group"><label>ใช้ห้องประชุมต่อสัปดาห์</label><div class="radio-group"><label><input type="radio" name="meeting_frequency" value="ไม่ใช้"> ไม่ใช้</label><label><input type="radio" name="meeting_frequency" value="1-2 ครั้ง"> 1-2 ครั้ง</label><label><input type="radio" name="meeting_frequency" value="3-5 ครั้ง"> 3-5 ครั้ง</label><label><input type="radio" name="meeting_frequency" value="มากกว่า 5 ครั้ง"> มากกว่า 5 ครั้ง</label></div></div>
+      <div class="form-group"><label>ขนาดห้องประชุมที่ใช้บ่อย (เลือกได้หลายข้อ)</label><div class="checkbox-group"><label><input type="checkbox" name="meeting_room_size" value="ห้องเล็ก 2-4 คน"> ห้องเล็ก 2-4 คน</label><label><input type="checkbox" name="meeting_room_size" value="ห้องกลาง 6-8 คน"> ห้องกลาง 6-8 คน</label><label><input type="checkbox" name="meeting_room_size" value="ห้องใหญ่ 10+ คน"> ห้องใหญ่ 10+ คน</label><label><input type="checkbox" name="meeting_room_size" value="ไม่ใช้ห้องประชุม"> ไม่ใช้ห้องประชุม</label></div></div>
+      <div class="form-group"><label>รูปแบบงาน</label><div class="radio-group"><label><input type="radio" name="work_style" value="พื้นที่เงียบ (Quiet Zone)"> พื้นที่เงียบ (Quiet Zone)</label><label><input type="radio" name="work_style" value="พื้นที่ Collaboration (Open)"> พื้นที่ Collaboration (Open)</label><label><input type="radio" name="work_style" value="ยืดหยุ่น"> ยืดหยุ่น</label></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🎬</span><span class="card-title">ความต้องการเฉพาะ Production</span><span class="card-count">ส่วนที่ 4/5</span></div>
+      <div class="form-group"><label>บทบาทหลักของคุณ</label><div class="radio-group"><label><input type="radio" name="role_type" value="Video Editor"> Video Editor</label><label><input type="radio" name="role_type" value="Broadcast Engineer"> Broadcast Engineer</label><label><input type="radio" name="role_type" value="Motion Graphics"> Motion Graphics</label><label><input type="radio" name="role_type" value="Audio Engineer"> Audio Engineer</label><label><input type="radio" name="role_type" value="อื่นๆ"> อื่นๆ</label></div></div>
+      <div class="form-group"><label>ความต้องการ Edit Suite (ห้องตัดต่อส่วนตัว)</label><div class="radio-group"><label><input type="radio" name="edit_suite" value="จำเป็น"> จำเป็น</label><label><input type="radio" name="edit_suite" value="ใช้ร่วมได้"> ใช้ร่วมกันได้</label><label><input type="radio" name="edit_suite" value="ไม่จำเป็น"> ไม่จำเป็น</label></div></div>
+      <div class="form-group"><label>ความต้องการ Sound Isolation</label><div class="radio-group"><label><input type="radio" name="sound_isolation" value="จำเป็น"> จำเป็น</label><label><input type="radio" name="sound_isolation" value="ดีถ้ามี"> ดีถ้ามี</label><label><input type="radio" name="sound_isolation" value="ไม่จำเป็น"> ไม่จำเป็น</label></div></div>
+      <div class="form-group"><label>ความต้องการ Rack Space สำหรับอุปกรณ์</label><div class="radio-group"><label><input type="radio" name="rack_space" value="จำเป็น"> จำเป็น</label><label><input type="radio" name="rack_space" value="ดีถ้ามี"> ดีถ้ามี</label><label><input type="radio" name="rack_space" value="ไม่จำเป็น"> ไม่จำเป็น</label></div></div>
+      <div class="form-group"><label>ขนาด Rack ที่ต้องการ (U)</label><input type="text" name="rack_size" placeholder="เช่น 12U, 24U, 42U (หรือเว้นว่างถ้าไม่ต้องการ)"></div>
+      <div class="form-group"><label>ความต้องการ Color Grading Monitor</label><div class="radio-group"><label><input type="radio" name="grading_monitor" value="จำเป็น"> จำเป็น</label><label><input type="radio" name="grading_monitor" value="ดีถ้ามี"> ดีถ้ามี</label><label><input type="radio" name="grading_monitor" value="ไม่จำเป็น"> ไม่จำเป็น</label></div></div>
+      <div class="form-group"><label>ความต้องการ Shared NAS Storage</label><div class="radio-group"><label><input type="radio" name="storage_nas" value="จำเป็น"> จำเป็น</label><label><input type="radio" name="storage_nas" value="ใช้ร่วมกันได้"> ใช้ร่วมกันได้</label><label><input type="radio" name="storage_nas" value="ไม่จำเป็น"> ไม่จำเป็น</label></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">📝</span><span class="card-title">ความต้องการพิเศษเพิ่มเติม</span><span class="card-count">ส่วนที่ 5/5</span></div>
+      <div class="form-group"><label>ความต้องการพิเศษ / ข้อเสนอแนะ</label><textarea name="special_notes" placeholder="เช่น ความต้องการ Power (A/C dedicated circuit), Fiber connection, อุณหภูมิห้อง..."></textarea></div>
+    </div>
+    <button type="submit" class="btn-submit" id="submitBtn">📤 ส่งแบบสอบถาม</button>
+    <div class="error-msg" id="errorMsg"></div>
+  </form>
+  <div class="success-card" id="successCard">
+    <div class="success-icon">✅</div><div class="success-title">ส่งข้อมูลสำเร็จ!</div>
+    <div class="success-msg">ขอบคุณสำหรับการกรอกแบบสอบถาม SSDM-RELOC-001<br><br>หากมีข้อสงสัย กรุณาติดต่อ <strong>tech@ssdm.co.th</strong></div>
+  </div>
+</div>
+<footer>SSDM-RELOC-001 · Space &amp; Meeting Requirements Survey · May 2026</footer>
+<script>
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwzSnGy-wncEsWdAp9bTCoGWizizxI6vFJyPmTk1h4MOT4r0IQi8v5hkk5sxHFGmJXS/exec';
+function updateProgress(){const f=document.querySelectorAll('input[required],select[required]');let n=0;f.forEach(x=>{if(x.value.trim())n++;});document.getElementById('progressBar').style.width=Math.min(100,Math.round((n/f.length)*100))+'%';}
+document.querySelectorAll('input,select,textarea').forEach(el=>{el.addEventListener('change',updateProgress);el.addEventListener('input',updateProgress);});
+document.querySelectorAll('.radio-group input[type=radio]').forEach(r=>{r.addEventListener('change',function(){this.closest('.radio-group').querySelectorAll('label').forEach(l=>l.classList.remove('selected'));this.closest('label').classList.add('selected');});});
+document.querySelectorAll('.checkbox-group input[type=checkbox]').forEach(c=>{c.addEventListener('change',function(){this.closest('label').classList.toggle('selected',this.checked);});});
+document.getElementById('surveyForm').addEventListener('submit',async function(e){
+  e.preventDefault();const form=this;const btn=document.getElementById('submitBtn');const errDiv=document.getElementById('errorMsg');errDiv.style.display='none';
+  let valid=true;form.querySelectorAll('[required]').forEach(f=>{if(!f.value.trim()){f.style.borderColor='var(--danger)';valid=false;}else f.style.borderColor='';});
+  if(!valid){errDiv.textContent='⚠️ กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน';errDiv.style.display='block';return;}
+  const data={department:'production'};const fd=new FormData(form);
+  for(const[k,v]of fd.entries()){if(!data[k])data[k]=v;}
+  data['meeting_room_size']=[...form.querySelectorAll('input[name="meeting_room_size"]:checked')].map(c=>c.value).join(', ');
+  btn.disabled=true;btn.textContent='⏳ กำลังส่งข้อมูล...';
+  try{const res=await fetch(APPS_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data),mode:'no-cors'});
+    // no-cors: data sent successfully
+    form.style.display='none';document.getElementById('successCard').style.display='block';window.scrollTo(0,0);
+  }catch(err){errDiv.textContent='❌ เกิดข้อผิดพลาด: '+err.message;errDiv.style.display='block';btn.disabled=false;btn.textContent='📤 ส่งแบบสอบถาม';}
+});
+</script>
+</body>
+</html>
