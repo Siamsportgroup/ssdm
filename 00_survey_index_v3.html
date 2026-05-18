@@ -1400,15 +1400,15 @@
 
     var btn = document.getElementById('btnSubmit');
 
-    // Show what's being sent
-    var debugDiv = document.getElementById('debugMsg');
-    if (!debugDiv) {
-      debugDiv = document.createElement('div');
-      debugDiv.id = 'debugMsg';
-      debugDiv.style.cssText = 'background:#fff3cd;border:1px solid #ffc107;padding:12px;border-radius:8px;margin-top:12px;font-size:13px;word-break:break-all;';
-      btn.parentNode.insertBefore(debugDiv, btn.nextSibling);
-    }
-    debugDiv.innerHTML = '<b>กำลังส่ง...</b><br>URL: ' + APPS_SCRIPT_URL.substring(0,60) + '...<br>Department tab: ' + data.department + '<br>Company: ' + data.company;
+
+
+
+
+
+
+
+
+
 
     fetch(APPS_SCRIPT_URL, {
       method: 'POST',
@@ -1417,11 +1417,11 @@
       body: JSON.stringify(data)
     })
     .then(function() {
-      debugDiv.innerHTML = '<b style="color:green">✅ Fetch completed (no-cors)</b><br>ตรวจสอบ Google Sheet และ Apps Script Execution Log';
+
       setTimeout(function() { showSuccess(data); }, 1500);
     })
     .catch(function(err) {
-      debugDiv.innerHTML = '<b style="color:red">❌ Fetch Error: ' + err.message + '</b><br>ลองเปิดไฟล์จาก Web Server แทน file://';
+
       btn.disabled = false;
       btn.textContent = '📤 ส่งแบบสอบถาม';
     });
